@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Http } from '@angular/http';
 
 import { Hero } from './hero';
 import { HeroService } from './hero.service';
@@ -14,14 +15,16 @@ import { HeroSearchComponent } from './hero-search.component';
 
 export class DashboardComponent implements OnInit {
   heroes: Hero[] = [];
+
   constructor(
-    private router: Router,
-    private heroService: HeroService) {
+      private router: Router, 
+      private heroService:HeroService) {
   }
 
   ngOnInit() {
-    this.heroService.getHeroes()
-      .then(heroesResult => this.heroes = heroesResult.slice(1, 5));
+      console.log('Dashboard init called');
+
+    this.heroService.getHeroes().then(heroesResult => this.heroes = heroesResult.slice(1, 5));
   }
   
   gotoDetail(hero: Hero) {
